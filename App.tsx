@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { AuthProvider } from './src/context/AuthContext';
 import MeditationsScreen from './src/screens/MeditationsScreen';
@@ -17,16 +18,20 @@ export default function App() {
   return (
     <AuthProvider>
       <PaperProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Paywall">
-            <Stack.Screen
-              name="Paywall"
-              component={PaywallScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen name="Meditations" component={MeditationsScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <SafeAreaProvider>
+          <SafeAreaView style={{ flex: 1, paddingHorizontal: 16 }}>
+            <NavigationContainer>
+              <Stack.Navigator initialRouteName="Paywall">
+                <Stack.Screen
+                  name="Paywall"
+                  component={PaywallScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen name="Meditations" component={MeditationsScreen} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </SafeAreaView>
+        </SafeAreaProvider>
       </PaperProvider>
     </AuthProvider>
   );

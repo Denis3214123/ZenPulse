@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 12,
     fontWeight: '600',
+    color: '#000000',
   },
   listContent: {
     paddingBottom: 16,
